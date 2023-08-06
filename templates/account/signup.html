@@ -1,0 +1,98 @@
+{% extends "CoreApp/Ella/base.html" %}
+{% load static %}
+
+
+{% block page_title %}
+    <title>Login - Registe</title>
+    <meta name="keywords" content="HTML5/CSS3 Template">
+    <meta name="description" content="Ella - Bootstrap eCommerce Template">
+{% endblock page_title %}
+
+{% block style_css %}
+<link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/pages/register.css" %}">
+{% endblock style_css %}
+
+{% block before_header %}
+    {% include "CoreApp/Ella/components/popups/announcement-bar.html" %}
+{% endblock before_header %}
+
+
+
+{% block main_body %}
+<main class="main">
+    <div class="page register-page">
+        <div class="container container-1170">
+            <div class="heading">
+                <nav class="breadcrumb breadcrumb-left" aria-label="breadcrumbs">
+                    <a class="link" href="index.html">Home</a>
+                    <span class="separate" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
+                        </svg>
+                    </span>
+                    <span>My Account</span>
+                </nav>
+                <h3 class="page-title text-left uppercase">
+                    My Account
+                </h3>
+            </div>
+            <div class="row">
+                <!--login form-->
+                <div class="col-12 col-md-6 col-lg-6 sign-in">
+                  {{form.errors}}
+                </div>
+
+                <!--signup form-->
+                <div class="col-12 col-md-6 col-lg-6 register">
+                    <div class="wrapper-content">
+                        <div class="register-heading">
+                            <div class="title">Register</div>
+                            <div class="desc">Please register below to create an account</div>
+                        </div>
+                        <form method="post" action="{% url 'account_signup' %}" accept-charset="UTF-8" class="contact-form">
+                            {% csrf_token %}
+
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" >
+                            {% endif %}
+
+                            <div class="form-field">
+                                <label class="form-label" for="{{ form.email.id_for_label }}">
+                                        Your Email Address
+                                        <span class="red-asterisk">*</span>
+                                </label>
+                                <input id="{{ form.email.id_for_label }}"
+                                       class="form-input form-input-placeholder"
+                                       type="email"
+                                       value=""
+                                       name="{{ form.email.name }}"
+                                       required=""
+                                       placeholder="Email Address" >
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="{{ form.password1.id_for_label }}">
+                                        Your Password
+                                        <span class="red-asterisk">*</span>
+                                </label>
+                                <input id="{{ form.password1.id_for_label }}"
+                                       class="form-input form-input-placeholder"
+                                       type="password"
+                                       value=""
+                                       required=""
+                                       placeholder="Password"
+                                       name="{{ form.password1.name }}">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="button button-1" value="Submit Contact">Submit Contact</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End header -->
+    </div>
+</main><!-- End main -->
+{% endblock main_body %}

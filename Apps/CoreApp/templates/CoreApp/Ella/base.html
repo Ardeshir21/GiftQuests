@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ardeshir D.">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static "CoreApp/Ella/assets/images/icons/favicon.png" %}">
+    <!-- Plugins bootstrap CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/lib/bootstrap/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/lib/bootstrap/bootstrap-grid.min.css" %}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/style.css" %}">
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/base/header/header-2/header-2.css" %}">
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/base/footer/footer-2/footer-2.css" %}">
+
+    {% block style_css %}
+    {% endblock style_css %}
+
+
+
+    <!-- Plugins Slick CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/lib/slick-carouse/slick.min.css" %}">
+    <!-- Plugins Animation CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/base/animation/animation.css" %}">
+    <!-- Plugins Product CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/base/product/component-product.css" %}">
+    <!-- Plugins Popup CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/popup/popup.css" %}">
+    <!-- Plugins Sidebar CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/sidebar/sidebar.css" %}">
+    <!-- Plugins FancyBox CSS File -->
+    <link rel="stylesheet" href="{% static "CoreApp/Ella/lib/fancybox/fancybox.css" %}">
+
+    {% block page_title %}
+        <title>Ella Multipurpose Layouts - HTML5/CSS3 Template</title>
+        <meta name="keywords" content="HTML5/CSS3 Template">
+        <meta name="description" content="Ella - Bootstrap eCommerce Template">
+    {% endblock page_title %}
+
+
+    {% block extra_head_content %}
+    {% endblock extra_head_content %}
+
+</head>
+
+
+
+<body class="template-index skin-2">
+    <div class="page-wrapper">
+
+        <!--    Any Components which should come before the header-->
+        {% block before_header %}
+        {% endblock before_header %}
+
+        <!--    Necessary Components-->
+        {% include "CoreApp/Ella/components/header-menu.html" %}
+
+        <!--    Any Components which should come before main body-->
+        {% block before_main %}
+        {% endblock before_main %}
+
+        <!--    Main Body-->
+        {% block main_body %}
+        {% endblock main_body %}
+
+
+        <!-- Messages -->
+        {% if messages %}
+          <div class="top-message">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible alert-style fade show text-right animate__animated animate__bounceInRight animate__slow mt-1" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+
+        <div class="background-header-search"></div>
+        <div class="background-overlay"></div>
+        <div class="background-overlay-popup"></div>
+
+        <!--    Necessary Components-->
+        {% include "CoreApp/Ella/components/footer.html" %}
+        {% include "CoreApp/Ella/components/popups/cookies-popup.html" %}
+        {% include "CoreApp/Ella/components/login-sidebar.html" %}
+        {% include "CoreApp/Ella/components/cart-sidebar.html" %}
+
+
+        <!-- Plugins Jquery JS File -->
+        <script src="{% static "CoreApp/Ella/lib/jquery/jquery.min.js" %}"></script>
+        <!-- Plugins Jquery Cookie JS File -->
+        <script src="{% static "CoreApp/Ella/lib/jquery.cookie/jquery.cookie.min.js" %}"></script>
+        <!-- Plugins bootstrap JS File -->
+        <script src="{% static "CoreApp/Ella/lib/bootstrap/bootstrap.bundle.min.js" %}"></script>
+        <script src="{% static "CoreApp/Ella/lib/bootstrap/popper.min.js" %}"></script>
+        <!-- Plugins Slick Carouse JS File -->
+        <script src="{% static "CoreApp/Ella/lib/slick-carouse/slick.min.js" %}"></script>
+        <!-- Plugins fancybox JS File -->
+        <script src="{% static "CoreApp/Ella/lib/fancybox/fancybox.umd.js" %}"></script>
+        <!-- Plugins elevateZoom JS File -->
+        <script src="{% static "CoreApp/Ella/lib/jquery.elevateZoom/jquery.elevateZoom.min.js" %}"></script>
+
+        <!-- Main JS File -->
+        <script src="{% static "CoreApp/Ella/assets/js/theme.min.js" %}"></script>
+
+        {% block extra_JS %}
+        {% endblock extra_JS %}
+
+    </div><!-- End page wrapper -->
+</body>
+</html>

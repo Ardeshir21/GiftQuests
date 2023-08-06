@@ -16,3 +16,4 @@ staticfiles
 .vs
 db.sqlite3
 .idea
+.ideas

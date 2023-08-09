@@ -39,7 +39,7 @@ ALLOWED_HOSTS = ['localhost',
                  '127.0.0.1',
                  # '161.35.103.31',
                  # 'www.turkeymode.com',
-                 #  'turkeymode.com',
+                 # 'turkeymode.com',
 ]
 
 # Application definition

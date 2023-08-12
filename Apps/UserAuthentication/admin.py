@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
-from .models import UserProfile
+from .models import CoreUser
 
 
 
@@ -11,8 +11,8 @@ admin.site.unregister(Group)
 # EmailAddressAdmin has been commented in the ENV/../allauth/account/admin.py
 
 
-@admin.register(UserProfile)
-class UserProfileAdmin(UserAdmin):
+@admin.register(CoreUser)
+class CoreUserAdmin(UserAdmin):
     """Define admin model for custom User Profile model with no username field."""
 
     fieldsets = (

@@ -4,8 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
 # Custom User manger for User model
-class UserProfileManager(BaseUserManager):
-    """Define a model manager for User Profile model with no username field."""
+class CoreUserManager(BaseUserManager):
+    """Define a model manager for CoreUser model with no username field."""
 
     use_in_migrations = True
 
@@ -38,8 +38,8 @@ class UserProfileManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class UserProfile(AbstractUser):
-    """User Profile Model, which is the basic and initial information of the User.
+class CoreUser(AbstractUser):
+    """CoreUser  Model, which is the basic and initial information of the User.
         The other User information will be defined in other Apps.
     """
 
@@ -51,7 +51,7 @@ class UserProfile(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    objects = UserProfileManager()
+    objects = CoreUserManager()
 
     # def get_absolute_url(self):
     #     return reverse('resumeApp:resume', args=[self.id])

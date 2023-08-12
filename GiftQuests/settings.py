@@ -37,7 +37,7 @@ MAINTENANCE_BYPASS_QUERY = os.getenv('MAINTENANCE_BYPASS_QUERY')
 
 ALLOWED_HOSTS = ['localhost',
                  '127.0.0.1',
-                 # '161.35.103.31',
+                 '3.106.115.188',
                  # 'www.turkeymode.com',
                  # 'turkeymode.com',
 ]

@@ -13,6 +13,9 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'UserAuthentication.CoreUser'
 
+SOCIALACCOUNT_ADAPTER = 'Apps.UserAuthentication.adapter.MySocialAccountAdapter'
+
+
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -24,6 +27,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_MAX_EMAIL_ADDRESSES = 1
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+
+
 
 
 ACCOUNT_FORMS = {
@@ -41,6 +46,7 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         'AUTH_PARAMS': {
             'access_type': 'online',
-        }
+        },
+        'OAUTH_PKCE_ENABLED': True,
     }
 }

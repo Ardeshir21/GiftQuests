@@ -4,7 +4,7 @@ from Apps.UserAuthentication.context_data import AuthenticationForms_context
 
 
 def all_custom_context(request):
-    # Call the functions to get the dynamically generated context data
+    # Simply call the functions from other context files to get the dynamically generated context data
     auth_forms = AuthenticationForms_context(request)
     data_2 = {'dummy': 'dummy_context'}
 

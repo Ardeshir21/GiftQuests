@@ -38,8 +38,9 @@ MAINTENANCE_BYPASS_QUERY = os.getenv('MAINTENANCE_BYPASS_QUERY')
 ALLOWED_HOSTS = ['localhost',
                  '127.0.0.1',
                  '3.106.115.188',
-                 # 'www.turkeymode.com',
-                 # 'turkeymode.com',
+                 '13.238.237.56',
+                 'www.giftquests.com',
+                 'giftquests.com',
 ]
 
 # Application definition
@@ -62,7 +63,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
 
     # Robot.txt
     # 'robots',
@@ -104,6 +105,12 @@ TEMPLATES = [
                 # custom context
                 'Apps.CoreApp.context_data.all_custom_context',
             ],
+            # make all the common tags loaded automatically into all templates
+            'builtins': ['django.templatetags.static',
+                         'django.templatetags.i18n',
+                         'allauth.account.templatetags.account',
+                         'allauth.socialaccount.templatetags.socialaccount',
+            ],
         },
     },
 ]
@@ -134,7 +141,7 @@ DATABASES = {
     }
 }
 
-SITE_ID = 1
+SITE_ID = 2
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

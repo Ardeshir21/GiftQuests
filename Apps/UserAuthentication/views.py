@@ -8,6 +8,7 @@ from allauth.account.views import LoginView, SignupView, \
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from allauth.utils import email_address_exists
 
 
 # The views are inherited from allAuth to override them if needed.
@@ -16,7 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Login View
 class CustomLoginView(LoginView):
     '''
-    This view is inherited from allAuth LoginView to ovveride the template and messages
+    This view is inherited from allAuth LoginView to override the template and messages
     '''
 
     def form_invalid(self, form):
@@ -30,8 +31,12 @@ class CustomRegisterView(SignupView):
 
     def form_valid(self, form):
         # Add messages
-        errors_dict = form.errors.as_data() # use this one to create different messages from the form
-        if True: # Use this one to check if the user exists
+        errors_dict = form.errors.as_data() # use this one to create different messages from the form object
+
+        # Check if a user with the given email already exists
+        data = form.cleaned_data
+        email = data.get("email")
+        if email_address_exists(email): # Use this one to check if the user exists
             messages.error(self.request, 'This email has been already registered.')
 
         return super().form_valid(form)

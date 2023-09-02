@@ -66,11 +66,31 @@
                 <a class="auth-link link link-underline" href="#">
                     <span class="text">Forgot your password?</span>
                 </a>
+
+                <!-- SOCIAL ACCOUNTS -->
+                {% get_providers as socialaccount_providers %}
+
+                {% if socialaccount_providers %}
+                    <p>________ OR ________</p>
+
+                    <div class="socialaccount_ballot">
+                      <ul class="socialaccount_providers">
+                        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                      </ul>
+                    </div>
+
+                    {% include "socialaccount/snippets/login_extra.html" %}
+                {% endif %}
+
+                <!-- NEW ACCOUNT -->
+                <p>Don't have an account?</p>
                 <a href="{% url 'account_signup' %}" class="button button-2 button-register">
                     Create account
                 </a>
             </div>
         </form>
+
+
 
         {% endif %}
     </div>

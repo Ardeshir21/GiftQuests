@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="{% static "CoreApp/Ella/assets/sass/pages/register.css" %}">
 {% endblock style_css %}
 
+{% block extra_head_content %}
+<script src="https://accounts.google.com/gsi/client" async></script>
+{% endblock extra_head_content %}
+
 {% block before_header %}
     {% include "CoreApp/Ella/components/popups/announcement-bar.html" %}
 {% endblock before_header %}
@@ -90,21 +94,27 @@
                         {% get_providers as socialaccount_providers %}
 
                         {% if socialaccount_providers %}
-                            <p>{% blocktrans with site.name as site_name %}Please sign in with one
-                            of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-                            for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
                             <div class="socialaccount_ballot">
+                                <!-- GOOGLE -->
+                                <div id="g_id_onload"
+                                     data-client_id="53404262424-64klfu9cund7ed25hmmk58putfsqdurb.apps.googleusercontent.com"
+                                     data-context="signin"
+                                     data-ux_mode="redirect"
+                                     data-login_uri="{% provider_login_url socialaccount_providers.0.id process=process scope=scope auth_params=auth_params %}"
+                                     data-auto_prompt="false">
+                                </div>
 
-                              <ul class="socialaccount_providers">
-                                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-                              </ul>
-
-                              <div class="login-or">{% trans 'or' %}</div>
-
+                                <div class="g_id_signin"
+                                     data-type="standard"
+                                     data-shape="rectangular"
+                                     data-theme="outline"
+                                     data-text="signin_with"
+                                     data-size="large"
+                                     data-logo_alignment="left">
+                                </div>
+                                <!-- END GOOGLE -->
                             </div>
 
-                            {% include "socialaccount/snippets/login_extra.html" %}
 
                         {% else %}
                             <p>{% blocktrans %}If you have not created an account yet, then please

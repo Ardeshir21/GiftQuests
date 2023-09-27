@@ -12,6 +12,7 @@ venv
 staticfiles
 /static
 /General Documents
+/Production Env
 .env
 .vs
 db.sqlite3

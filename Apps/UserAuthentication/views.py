@@ -12,7 +12,7 @@ from allauth.utils import email_address_exists
 
 
 # The views are inherited from allAuth to override them if needed.
-# In addition, the urls.py is also customized
+# In addition, with using the same url patter as allAuth, you can use your own url path for the authentication app
 
 # Login View
 class CustomLoginView(LoginView):

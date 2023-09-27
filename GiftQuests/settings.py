@@ -141,7 +141,7 @@ DATABASES = {
     }
 }
 
-SITE_ID = 2
+SITE_ID = os.getenv('SITE_ID')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

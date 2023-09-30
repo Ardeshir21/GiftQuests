@@ -72,8 +72,12 @@ INSTALLED_APPS = [
     # for models Text editor
     # 'ckeditor',
     # 'ckeditor_uploader',
+
     # User agent
     # 'django_user_agents'
+
+    # AWS S5 Bucket
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +145,7 @@ DATABASES = {
     }
 }
 
-SITE_ID = os.getenv('SITE_ID')
+SITE_ID = int(os.getenv('SITE_ID'))
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -179,10 +183,42 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Import the default storage backend for local file storage
+from django.core.files.storage import FileSystemStorage
 
-# The root for collecting all static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# AWS S3 settings
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+
+# Check if DEBUG is True
+if DEBUG:
+    # Use local file storage when DEBUG is True
+    STATICFILES_STORAGE = "django.core.files.storage.FileSystemStorage"
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    # Use AWS S3 storage when DEBUG is False
+    # Define storage backends for media and static files
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "bucket_name": AWS_STORAGE_BUCKET_NAME,
+                "location": "media/",
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "bucket_name": AWS_STORAGE_BUCKET_NAME,
+                "location": "static/",
+            },
+        },
+    }
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -3,7 +3,7 @@
 
 
 {% block page_title %}
-    <title>Login - Registe</title>
+    <title>Login - Register</title>
     <meta name="keywords" content="HTML5/CSS3 Template">
     <meta name="description" content="Ella - Bootstrap eCommerce Template">
 {% endblock page_title %}
@@ -85,10 +85,11 @@
                         <div class="button-register">
                             <button type="submit" class="button button-2 uppercase">login</button>
                             <a class="link-underline" href="#"><span class="text">Lost your password?</span></a>
-                        </div><!-- End Login button -->
+                        </div>
                     </form>
-                </div>
+                </div> <!--End of login form-->
 
+                <!-- social login-->
                 <div class="col-12 col-md-6 col-lg-6 register">
                     <div class="wrapper-content">
                         {% get_providers as socialaccount_providers %}
@@ -121,7 +122,7 @@
                             <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
                         {% endif %}
                     </div>
-                </div>
+                </div> <!-- End of social login-->
             </div>
         </div>
         <!-- End header -->

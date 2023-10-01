@@ -183,8 +183,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# Import the default storage backend for local file storage
-from django.core.files.storage import FileSystemStorage
+
 
 # AWS S3 settings
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
@@ -193,14 +192,33 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 
 # Check if DEBUG is True
 if os.getenv('LOCAL_STORAGE'):
-    # Use local file storage when DEBUG is True
-    STATICFILES_STORAGE = "django.core.files.storage.FileSystemStorage"
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    # Use local file storage when LOCAL_STORAGE is True
+    STATIC_URL = 'static/'
+    MEDIA_URL = 'media/'
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+            "OPTIONS": {
+                "location": os.path.join(BASE_DIR, 'media/'),
+                "base_url": "/media/",
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+            "OPTIONS": {
+                "location": os.path.join(BASE_DIR, 'static/'),
+                "base_url": "/static/",
+            }
+        },
+    }
+
+
+    # STATIC_URL = 'static/'
+    # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+    # MEDIA_URL = '/media/'
+    # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 else:
-    # Use AWS S3 storage when DEBUG is False
+    # Use AWS S3 storage when LOCAL_STORAGE is False
     # Define storage backends for media and static files
     STORAGES = {
         "default": {

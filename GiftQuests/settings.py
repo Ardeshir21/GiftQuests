@@ -192,7 +192,7 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 
 # Check if DEBUG is True
-if DEBUG:
+if os.getenv('LOCAL_STORAGE'):
     # Use local file storage when DEBUG is True
     STATICFILES_STORAGE = "django.core.files.storage.FileSystemStorage"
     STATIC_URL = '/static/'

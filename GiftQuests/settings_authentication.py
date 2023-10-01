@@ -12,7 +12,7 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'UserAuthentication.CoreUser'
 
 LOGIN_REDIRECT_URL = reverse_lazy('CoreApp:index')
-LOGIN_URL = reverse_lazy('UserAthentication:account_login')
+LOGIN_URL = reverse_lazy('account_login')
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
